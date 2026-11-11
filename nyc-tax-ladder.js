@@ -259,13 +259,13 @@ nycTaxLadder = {
     resumeWait = resolve;
     timer = setTimeout(() => { timer = null; resumeWait = null; resolve(); }, ms);
   });
-  const reset = () => {
+  const reset = (hideOpeningMessage = false) => {
     rateMasks.forEach(mask => mask.draw(0));
     thresholdLine.attr("opacity", 0).attr("y2", thresholdBottom);
     panels.forEach(p => p.draw(0));
     markers.forEach(g => g.attr("opacity", 0));
     setMessage("Watch the NYC tax rate climb.");
-    message.style.opacity = "1";
+    message.style.opacity = hideOpeningMessage ? "0" : "1";
     subtitle.textContent = "";
     subtitle.style.visibility = "hidden";
   };
@@ -285,9 +285,19 @@ nycTaxLadder = {
     (async () => {
       let firstCycle = true;
       while (!stopped) {
-        reset();
-        await pause(firstCycle ? 500 : 350);
-        firstCycle = false;
+        reset(firstCycle);
+        if (firstCycle) {
+          await pause(300);
+          if (stopped) break;
+          try {
+            await d3.select(message).transition().duration(300)
+              .ease(d3.easeCubicOut).style("opacity", 1).end();
+          } catch (e) { stopped = true; break; }
+          await pause(200);
+          firstCycle = false;
+        } else {
+          await pause(350);
+        }
         for (let i = 0; i < brackets.length; i++) {
           if (stopped) break;
           try {
