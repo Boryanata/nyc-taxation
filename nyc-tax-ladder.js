@@ -286,7 +286,7 @@ nycTaxLadder = {
       let firstCycle = true;
       while (!stopped) {
         reset();
-        await pause(firstCycle ? 700 : 350);
+        await pause(firstCycle ? 500 : 350);
         firstCycle = false;
         for (let i = 0; i < brackets.length; i++) {
           if (stopped) break;
