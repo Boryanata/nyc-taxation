@@ -1,7 +1,7 @@
 // Observable Classic: keep a separate Plot = require("@observablehq/plot@0.6.19") cell.
 // Paste this entire cell into the notebook. D3 is loaded inside the cell.
 
-taxAccordion = {
+nycTaxLadder = {
   const d3 = await require("d3@7");
   const GREEN = "#176746", PALE = "#DDEFE4", PAPER = "#FFFEFC";
   const INK = "#29332E", MUTED = "#5C6B61", AMBER = "#C88517";

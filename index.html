@@ -18,11 +18,11 @@
 
       const chart = document.querySelector("#chart");
       try {
-        const response = await fetch("./taxAccordion.js");
+        const response = await fetch("./nyc-tax-ladder.js");
         if (!response.ok) throw new Error(`Could not load chart code (${response.status})`);
         const source = await response.text();
-        const cell = source.match(/taxAccordion\s*=\s*\{([\s\S]*)\}\s*$/);
-        if (!cell) throw new Error("Could not find the taxAccordion cell");
+        const cell = source.match(/nycTaxLadder\s*=\s*\{([\s\S]*)\}\s*$/);
+        if (!cell) throw new Error("Could not find the nycTaxLadder cell");
 
         const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
         const render = new AsyncFunction("Plot", "require", "invalidation", cell[1]);
