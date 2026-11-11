@@ -245,12 +245,12 @@ nycTaxLadder = {
   }
   setMessage("Watch the NYC marginal rate climb.");
   const note = document.createElement("figcaption");
-  note.textContent = "NYC marginal personal income tax rate · Married filing jointly" +
-    " · Each full bill = 0.1 percentage point above 3%" +
-    " · Income labels are evenly spaced, not to scale" +
-    " · Total tax paid still rises with income" +
+  note.textContent = "NYC marginal income tax · Married filing jointly" +
+    " · Full bill = 0.1 percentage point above 3%" +
+    " · Income spacing not to scale" +
+    " · Total tax paid rises with income" +
     " · Source: Data Viz Exercise.xlsx";
-  note.style.cssText = "font-size:12px;line-height:1.45;color:#617067;" +
+  note.style.cssText = "font-size:11.5px;line-height:1.45;color:#617067;" +
     "margin:24px 30px 0 70px;padding-bottom:14px";
   figure.append(title, subtitle, message, plot, note);
 
