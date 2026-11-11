@@ -283,9 +283,11 @@ nycTaxLadder = {
     complete();
   } else {
     (async () => {
+      let firstCycle = true;
       while (!stopped) {
         reset();
-        await pause(350);
+        await pause(firstCycle ? 3200 : 350);
+        firstCycle = false;
         for (let i = 0; i < brackets.length; i++) {
           if (stopped) break;
           try {
