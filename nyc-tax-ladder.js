@@ -245,7 +245,7 @@ nycTaxLadder = {
   }
   setMessage("Watch the NYC tax rate climb.");
   const note = document.createElement("figcaption");
-  note.textContent = "NYC marginal income tax · Married filing jointly" +
+  note.textContent = "NYC personal income tax · Married filing jointly" +
     " · Full bill = 0.1 percentage point above 3%" +
     " · Income spacing not to scale" +
     " · Total tax paid rises with income" +
