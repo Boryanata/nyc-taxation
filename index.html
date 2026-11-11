@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NYC income tax ladder</title>
+    <style>
+      body { margin: 0; padding: 24px; background: #fffefc; }
+      #chart { max-width: 1190px; margin: 0 auto; }
+      #error { color: #a52525; font: 16px Arial, sans-serif; }
+    </style>
+  </head>
+  <body>
+    <main id="chart" aria-live="polite"></main>
+    <script type="module">
+      import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.19/+esm";
+      import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+      const chart = document.querySelector("#chart");
+      try {
+        const response = await fetch("./taxAccordion.js");
+        if (!response.ok) throw new Error(`Could not load chart code (${response.status})`);
+        const source = await response.text();
+        const cell = source.match(/taxAccordion\s*=\s*\{([\s\S]*)\}\s*$/);
+        if (!cell) throw new Error("Could not find the taxAccordion cell");
+
+        const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+        const render = new AsyncFunction("Plot", "require", "invalidation", cell[1]);
+        const require = name => {
+          if (name === "d3@7") return d3;
+          throw new Error(`Unknown Observable dependency: ${name}`);
+        };
+        const invalidation = new Promise(resolve =>
+          window.addEventListener("pagehide", resolve, {once: true}));
+        chart.replaceChildren(await render(Plot, require, invalidation));
+      } catch (error) {
+        console.error(error);
+        const message = document.createElement("p");
+        message.id = "error";
+        message.textContent = `Preview failed: ${error.message}`;
+        chart.replaceChildren(message);
+      }
+    </script>
+  </body>
+</html>

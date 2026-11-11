@@ -1,0 +1,5 @@
+.DS_Store
+
+# Keep the supplied exercise workbook and earlier local prototype private.
+Data Viz Exercise.xlsx
+taxIsotype-reviewed.js
