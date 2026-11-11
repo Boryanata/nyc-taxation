@@ -243,7 +243,7 @@ nycTaxLadder = {
     await target.transition().duration(inMs)
       .ease(d3.easeCubicInOut).style("opacity", 1).end();
   }
-  setMessage("Watch the NYC marginal rate climb.");
+  setMessage("Watch the NYC tax rate climb.");
   const note = document.createElement("figcaption");
   note.textContent = "NYC marginal income tax · Married filing jointly" +
     " · Full bill = 0.1 percentage point above 3%" +
@@ -264,7 +264,7 @@ nycTaxLadder = {
     thresholdLine.attr("opacity", 0).attr("y2", thresholdBottom);
     panels.forEach(p => p.draw(0));
     markers.forEach(g => g.attr("opacity", 0));
-    setMessage("Watch the NYC marginal rate climb.");
+    setMessage("Watch the NYC tax rate climb.");
     message.style.opacity = "1";
     subtitle.textContent = "";
     subtitle.style.visibility = "hidden";
