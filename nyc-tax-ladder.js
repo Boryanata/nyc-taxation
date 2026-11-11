@@ -296,7 +296,7 @@ nycTaxLadder = {
           if (i === brackets.length - 1) {
             try {
               await Promise.all([
-                fadeMessage("Above $90K: 3.88% marginal rate.",
+                fadeMessage("Above $90K: 3.88% on the next dollar.",
                   {outMs: 350, inMs: 900}),
                 thresholdLine.transition().duration(1000)
                   .ease(d3.easeCubicOut).attr("opacity", 1)
