@@ -18,7 +18,7 @@
 
       const chart = document.querySelector("#chart");
       try {
-        const response = await fetch("./nyc-tax-ladder.js");
+        const response = await fetch("./nyc-tax-ladder.js", {cache: "no-store"});
         if (!response.ok) throw new Error(`Could not load chart code (${response.status})`);
         const source = await response.text();
         const cell = source.match(/nycTaxLadder\s*=\s*\{([\s\S]*)\}\s*$/);

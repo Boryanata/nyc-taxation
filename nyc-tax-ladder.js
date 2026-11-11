@@ -274,7 +274,7 @@ nycTaxLadder = {
     thresholdLine.attr("opacity", 1).attr("y2", thresholdTop);
     panels.forEach(p => p.draw(1));
     markers.forEach(g => g.attr("opacity", 1));
-    setMessage("The tax ladder ends at $90K.", true);
+    setMessage("The tax rate hits its ceiling at $90K. Income doesn't.", true);
     subtitle.textContent = subtitleCopy;
     subtitle.style.visibility = "visible";
   };
@@ -286,7 +286,7 @@ nycTaxLadder = {
       let firstCycle = true;
       while (!stopped) {
         reset();
-        await pause(firstCycle ? 3200 : 350);
+        await pause(firstCycle ? 800 : 350);
         firstCycle = false;
         for (let i = 0; i < brackets.length; i++) {
           if (stopped) break;
@@ -331,7 +331,7 @@ nycTaxLadder = {
         }
         if (!stopped) {
           try {
-            await fadeMessage("The tax ladder ends at $90K.",
+            await fadeMessage("The tax rate hits its ceiling at $90K. Income doesn't.",
               {allAmber: true, outMs: 350, inMs: 1400});
           } catch (e) { stopped = true; break; }
           subtitle.style.visibility = "visible";
