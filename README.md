@@ -1,4 +1,4 @@
-# NYC tax ladder
+# NYC taxation
 
 An animated look at NYC's marginal personal income tax rate for married couples filing jointly. The supplied bracket data shows a 3.876% rate above $90,000, including for the income examples through $5 million. The chart shows the rate on the next dollar; total tax paid still rises with income.
 
